@@ -78,8 +78,14 @@
         <channel name="systemResources.CPU_15"/>
     </packet>
 
-    <!-- Ignored packets -->
+    <!-- our LED telemetry packet channels -->
+    <packet name="LEDChannels" id="8" level="1">
+        <channel name="led.BlinkState" />
+        <channel name="led.LEDTransitions" />
+    </packet>
 
+
+    <!-- Ignored packets -->
     <ignore>
         <channel name="cmdDisp.CommandErrors"/>
     </ignore>

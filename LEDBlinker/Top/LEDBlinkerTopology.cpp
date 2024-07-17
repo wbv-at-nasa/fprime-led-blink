@@ -5,7 +5,7 @@
 // ======================================================================
 // Provides access to autocoded functions
 #include <LEDBlinker/Top/LEDBlinkerTopologyAc.hpp>
-#include <LEDBlinker/Top/LEDBlinkerPacketsAc.hpp>
+//#include <LEDBlinker/Top/LEDBlinkerPacketsAc.hpp> // busted: don't use!
 
 // Necessary project-specified types
 #include <Fw/Types/MallocAllocator.hpp>

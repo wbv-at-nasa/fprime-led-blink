@@ -7,16 +7,18 @@
 
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/instances.fpp"
-  "${CMAKE_CURRENT_LIST_DIR}/LEDBlinkerPackets.xml"
   "${CMAKE_CURRENT_LIST_DIR}/topology.fpp"
   "${CMAKE_CURRENT_LIST_DIR}/LEDBlinkerTopology.cpp"
+  # "${CMAKE_CURRENT_LIST_DIR}/LEDBlinkerPackets.xml" # TODO: Figure out why this doesn't work :(
 )
+
 set(MOD_DEPS
   Fw/Logger
   Svc/PosixTime
   # Communication Implementations
   Drv/Udp
   Drv/TcpServer
+  Drv/GpioDriverPorts
 )
 
 register_fprime_module()

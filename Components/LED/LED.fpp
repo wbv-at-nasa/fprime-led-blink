@@ -2,10 +2,30 @@ module Components {
     @ Manages the LED to be blinked.
     active component LED {
 
+        #==========#
+        # Commands #
+        #==========#
+
         @ Command to enable or disable the LED blinking.
         async command BLINKING_ON_OFF(
             on_off: Fw.On @< Controls whether LED should blink
         )
+
+
+        #===========#
+        # Telemetry #
+        #===========#
+
+        @ Telemetry for reporting blink state.
+        telemetry BlinkState: Fw.On
+
+        @ Telemetry for number of transitions (blinks) the LED has made.
+        telemetry LEDTransitions: U64
+
+
+        #========#
+        # Events #
+        #========#
 
         @ Indicates bad argument for LED blinking.
         event InvalidBlinkArg(badArg: Fw.On) \
@@ -27,24 +47,25 @@ module Components {
             severity activity low \
             format "LED state is now: {}"
 
-        ##############################################################################
-        #### Uncomment the following examples to start customizing your component ####
-        ##############################################################################
 
-        # @ Example async command
-        # async command COMMAND_NAME(param_name: U32)
+        #========#
+        # Params #
+        #========#
 
-        # @ Example telemetry counter
-        # telemetry ExampleCounter: U64
+        @ Blinking interval (in ticks).
+        param BLINK_INTERVAL: U32
 
-        # @ Example event
-        # event ExampleStateEvent(example_state: Fw.On) severity activity high id 0 format "State set to {}"
 
-        # @ Example port: receiving calls from the rate group
-        # sync input port run: Svc.Sched
+        #=======#
+        # Ports #
+        #=======#
 
-        # @ Example parameter
-        # param PARAMETER_NAME: U32
+        @ Recieves calls from the rate group.
+        sync input port run: Svc.Sched
+
+        @ Sends calls to the GPIO Driver.
+        output port gpioSet: Drv.GpioWrite
+
 
         ###############################################################################
         # Standard AC Ports: Required for Channels, Events, Commands, and Parameters  #

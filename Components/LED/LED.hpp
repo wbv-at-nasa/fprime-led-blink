@@ -34,24 +34,29 @@ namespace Components {
 
     PRIVATE:
 
-      // ----------------------------------------------------------------------
-      // Handler implementations for commands
-      // ----------------------------------------------------------------------
-
-      //! Handler implementation for command TODO
-      //!
-      //! TODO
+      //! Handler for the blink-toggle command, `BLINKING_ON_OFF`
       void BLINKING_ON_OFF_cmdHandler(
           FwOpcodeType opCode, //!< The opcode
           U32 cmdSeq,          //!< The command sequence number
           Fw::On on_off        //!< Controls whether LED should blink
       );
 
-      Os::Mutex lock;  //! Used to allow thread-safe control
-      Fw::On state;    //! Tracks whether LED state is on or off
-      U64 transitions; //! Number of LED on-off transitions that have occurred
-      U32 count;       //! Number of ticks the LED has been `On` for.
-      bool blinking;   //! Flag: whether blinking should be occurring
+      //! TODO
+      void parameterUpdated(
+          FwPrmIdType id //!< ID of the (updated) parameter
+      );
+
+      //! TODO
+      void run_handler(
+        const NATIVE_INT_TYPE portNum, //!< Port number
+        NATIVE_UINT_TYPE context       //!< The call order
+      );
+
+      Os::Mutex lock;  //!< Used to allow thread-safe control
+      Fw::On state;    //!< Tracks whether LED state is on or off
+      U64 transitions; //!< Number of LED on-off transitions that have occurred
+      U32 count;       //!< Number of ticks the LED has been `On` for.
+      bool blinking;   //!< Flag: whether blinking should be occurring
 
   };
 
