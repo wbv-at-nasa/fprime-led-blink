@@ -15,6 +15,8 @@ module LEDBlinker {
     # ----------------------------------------------------------------------
     # Instances used in the topology
     # ----------------------------------------------------------------------
+    instance led
+    instance gpio
 
     instance $health
     instance blockDrv
@@ -134,9 +136,15 @@ module LEDBlinker {
     }
 
     connections LEDBlinker {
-      # Add here connections to user-defined components
+  
     }
 
+    connections LEDConnections {
+      # rateGroup1 is a 1 Hz signal
+      # [3] is the next available rategroup member output after 0, 1, and 2 (used above)
+      rateGroup1.RateGroupMemberOut[3] -> led.run
+      led.gpioSet -> gpio.gpioWrite
+    }
   }
 
 }

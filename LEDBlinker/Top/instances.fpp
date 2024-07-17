@@ -13,11 +13,14 @@ module LEDBlinker {
   # Active component instances
   # ----------------------------------------------------------------------
 
-  # our new LED component :D
+  # our new LED component
   instance led: Components.LED base id 0x0e00 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 95
+
+  # GPIO driver
+  instance gpio: Drv.LinuxGpioDriver base id 0x4c00
 
   instance blockDrv: Drv.BlockDriver base id 0x0100 \
     queue size Default.QUEUE_SIZE \
